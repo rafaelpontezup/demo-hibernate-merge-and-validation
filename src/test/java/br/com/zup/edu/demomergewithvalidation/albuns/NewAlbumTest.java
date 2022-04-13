@@ -21,8 +21,12 @@ public class NewAlbumTest {
     private EntityManager manager;
 
     /**
-     * It seems like it has to do with this issue:
-     * https://bugzilla.redhat.com/show_bug.cgi?id=1245082
+     * It seems like it has to do with those issues:
+     *  - https://bugzilla.redhat.com/show_bug.cgi?id=1245082
+     *  - https://hibernate.atlassian.net/browse/HHH-9751
+     *  - https://hibernate.atlassian.net/browse/HHH-9979
+     *  - https://hibernate.atlassian.net/browse/HHH-9137
+     *  - https://stackoverflow.com/a/65324950/1240480
      */
     @Test
     public void shouldCreateANewAlbumWithImages_onMerge() {
