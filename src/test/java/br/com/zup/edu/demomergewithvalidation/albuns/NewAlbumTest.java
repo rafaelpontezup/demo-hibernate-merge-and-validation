@@ -25,35 +25,44 @@ public class NewAlbumTest {
      * https://bugzilla.redhat.com/show_bug.cgi?id=1245082
      */
     @Test
-    public void shouldCreateANewAlbumWithItsImages_onMerge() {
+    public void shouldCreateANewAlbumWithImages_onMerge() {
 
         Album newAlbum = new Album("Zup Edu"); // it works when using SEQUENCE instead of IDENTITY
-        newAlbum.addImage(new Image("rponte.png"));
+        newAlbum.addImages(
+                new Image("jordi.png"),
+                new Image("rponte.png")
+        );
 
         manager.merge(newAlbum); // throws a ConstraintViolationException due to @Size violation
 
-        assertEquals(1, newAlbum.getImages().size());
+        assertEquals(2, newAlbum.getImages().size());
     }
 
     @Test
-    public void shouldCreateANewAlbumWithItsImages_onPersist() {
+    public void shouldCreateANewAlbumWithImages_onPersist() {
 
         Album newAlbum = new Album("Zup Edu");
-        newAlbum.addImage(new Image("rponte.png"));
+        newAlbum.addImages(
+                new Image("jordi.png"),
+                new Image("rponte.png")
+        );
 
         manager.persist(newAlbum); // it works!!
 
-        assertEquals(1, newAlbum.getImages().size());
+        assertEquals(2, newAlbum.getImages().size());
     }
 
     @Test
-    public void shouldCreateANewAlbumWithItsImages_onFlush() {
+    public void shouldCreateANewAlbumWithImages_onFlush() {
 
         Album newAlbum = new Album("Zup Edu");
-        newAlbum.addImage(new Image("rponte.png"));
+        newAlbum.addImages(
+                new Image("jordi.png"),
+                new Image("rponte.png")
+        );
 
         manager.flush(); // it works!!
 
-        assertEquals(1, newAlbum.getImages().size());
+        assertEquals(2, newAlbum.getImages().size());
     }
 }

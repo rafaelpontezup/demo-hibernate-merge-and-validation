@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -41,11 +42,13 @@ public class Album {
     }
 
     /**
-     * Adds a new image
+     * Adds one or more new images
      */
-    public void addImage(Image newImage) {
-        this.images.add(newImage);
-        newImage.setAlbum(this);
+    public void addImages(Image...newImages) {
+        Arrays.stream(newImages).forEach((newImage -> {
+            this.images.add(newImage);
+            newImage.setAlbum(this);
+        }));
     }
 
 }
